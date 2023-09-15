@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="poke_tracker">Poke - Tracker</string>
+    <string name="register_new_catch">Register new catch</string>
+    <string name="national_number">National Number</string>
+    <string name="name">Name</string>
+    <string name="species">Species</string>
+    <string name="gender">Gender</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="level">Level</string>
+    <string name="base_stats">Base Stats</string>
+    <string name="hp">HP</string>
+    <string name="attack">Attack</string>
+    <string name="defense">Defense</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="female">Female</string>
+    <string name="unk">Unk</string>
+    <string name="male">Male</string>
+    <string name="_896">896</string>
+    <string name="_2_2_m">2.2 m</string>
+    <string name="_800_0_kg">800.0 kg</string>
+    <string name="glastrier">Glastrier</string>
+    <string name="wild_horse_pok_mon">Wild Horse Pokémon</string>
+    <string name="_0">0</string>
+    <string name="_0_2">0</string>
+    <string name="_0_1" />
+    <string name="_0_3">0</string>
+    <string name="_0_0">0</string>
 </resources>
