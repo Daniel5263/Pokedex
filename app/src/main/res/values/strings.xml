@@ -28,4 +28,7 @@
     <string name="_0_1" />
     <string name="_0_3">0</string>
     <string name="_0_0">0</string>
+    <string name="enter_a_decimal_number_e_g_5_25">Enter a decimal number (e.g., 5.25)</string>
+    <string name="abcdefghijklmnopqrstuvwxyz">abcdefghijklmnopqrstuvwxyz.</string>
+    <string name="enter_a_decimal_number" />
 </resources>

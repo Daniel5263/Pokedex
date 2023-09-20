@@ -212,6 +212,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:hint="@string/enter_a_decimal_number"
         android:text="@string/_2_2_m"
         app:layout_constraintStart_toStartOf="@+id/female_id"
         app:layout_constraintTop_toBottomOf="@+id/female_id" />
@@ -233,7 +234,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="text|textCapWords"
         android:text="@string/glastrier"
         app:layout_constraintStart_toStartOf="@+id/national_input"
         app:layout_constraintTop_toBottomOf="@+id/national_input" />
