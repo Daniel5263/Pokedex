@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner_id;
     EditText height_input;
     EditText name_input;
+    EditText national_input;
     Button save_id;
 
     @Override
@@ -36,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Height input with 2 decimal places in meters
         height_input = findViewById(R.id.height_input);
         name_input = findViewById(R.id.name_input);
+        national_input = findViewById(R.id.national_input);
         save_id = findViewById(R.id.save_id);
 
         save_id.setOnClickListener(new View.OnClickListener() {
@@ -46,22 +45,40 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String inputHeight = height_input.getText().toString();
                 String inputName = name_input.getText().toString();
+                int inputNat = Integer.parseInt(String.valueOf(national_input.getText()));
 
+                //Validating National Number
+                if(isValidNat(inputNat)) {
+                    national_input.setTextColor(Color.BLACK);
+                } else {
+                    national_input.setTextColor(Color.RED);
+                    Toast.makeText(MainActivity.this, "Invalid National Number", Toast.LENGTH_SHORT).show();
+                }
+
+                //Validating Name
                 if(isValidName(inputName)) {
                     name_input.setTextColor(Color.BLACK);
-                    saveEvent();
                 } else {
                     name_input.setTextColor(Color.RED);
                     Toast.makeText(MainActivity.this, "Invalid Name", Toast.LENGTH_SHORT).show();
                 }
-                
-                if (isValidDecimal(inputHeight)) {
-                    height_input.setTextColor(Color.BLACK);
 
+                //Validating Height
+                if(isValidHeight(inputHeight)) {
+                    height_input.setTextColor(Color.BLACK);
                 } else {
                     height_input.setTextColor(Color.RED);
-
+                    Toast.makeText(MainActivity.this, "Invalid Height", Toast.LENGTH_SHORT).show();
                 }
+
+                //Save event if all fields are valid
+                if(isValidName(inputName) && isValidHeight(inputHeight) && isValidNat(inputNat)) {
+                    saveEvent();
+                }
+            }
+
+            public boolean isValidNat(int inputNat) {
+                return inputNat >= 0 && inputNat <= 1010;
             }
 
             public boolean isValidName(String inputName) {
@@ -69,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 return inputName.matches(pattern);
             }
 
-            public boolean isValidDecimal(String heightInput) {
+            public boolean isValidHeight(String heightInput) {
                 try {
                     Double.parseDouble(heightInput);
                     return true;
@@ -92,35 +109,5 @@ public class MainActivity extends AppCompatActivity {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner_id.setAdapter(ad);
-
-        //Integer between 0-1010 for National Number
-        EditText national_input = findViewById(R.id.national_input);
-
-
-        national_input.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty()) {
-                    int nat_inp = Integer.parseInt(s.toString());
-                    if (nat_inp < 0 || nat_inp > 1010) {
-                        // Input is outside the valid range, turn text color red
-                        national_input.setTextColor(Color.RED);
-                    } else {
-                        // Input is within the valid range, reset text color
-                        national_input.setTextColor(Color.BLACK);
-                    }
-                }
-            }
-        });
-
-
     }
 }

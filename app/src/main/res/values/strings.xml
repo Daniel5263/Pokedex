@@ -31,4 +31,6 @@
     <string name="enter_a_decimal_number_e_g_5_25">Enter a decimal number (e.g., 5.25)</string>
     <string name="abcdefghijklmnopqrstuvwxyz">abcdefghijklmnopqrstuvwxyz.</string>
     <string name="enter_a_decimal_number" />
+    <string name="_896_">896</string>
+    <string name="between_0_1010">Between 0-1010</string>
 </resources>
