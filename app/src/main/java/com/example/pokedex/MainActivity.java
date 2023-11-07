@@ -3,9 +3,11 @@ package com.example.pokedex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,8 +19,52 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    public void clearEvent(View v) {
+        int rowsDeleted = getContentResolver().delete(PokeDB.CONTENT_URI, null, null);
+
+        if (rowsDeleted > 0) {
+            Toast.makeText(this, "All database entries cleared", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed to clear database entries", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void saveEvent() {
-        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        ContentValues values = getFormData();
+        if (values != null) {
+            Uri uri = getContentResolver().insert(PokeDB.CONTENT_URI, values);
+
+            if (uri != null) {
+                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public ContentValues getFormData() {
+        ContentValues values = new ContentValues();
+
+        values.put(PokeDB.COLUMN_NATIONAL, Integer.parseInt(national_input.getText().toString()));
+        values.put(PokeDB.COLUMN_NAME, name_input.getText().toString());
+        values.put(PokeDB.COLUMN_SPECIES, species_input.getText().toString());
+        values.put(PokeDB.COLUMN_WEIGHT, Double.parseDouble(weight_input.getText().toString()));
+        values.put(PokeDB.COLUMN_HEIGHT, Double.parseDouble(height_input.getText().toString()));
+        values.put(PokeDB.COLUMN_LEVEL, Integer.parseInt(spinner_id.getSelectedItem().toString()));
+        values.put(PokeDB.COLUMN_HP, Integer.parseInt(hp_input.getText().toString()));
+        values.put(PokeDB.COLUMN_ATTACK, Integer.parseInt(attack_input.getText().toString()));
+        values.put(PokeDB.COLUMN_DEFENSE, Integer.parseInt(defense_input.getText().toString()));
+
+        RadioGroup radioGroup = findViewById(R.id.radio_group_id);
+        int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+
+        if (selectedRadioButtonId != -1) {
+            RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+            String selectedGender = selectedRadioButton.getText().toString();
+            values.put(PokeDB.COLUMN_GENDER, selectedGender);
+        }
+
+        return values;
     }
 
     public void resetEvent(View v) {
@@ -58,11 +104,16 @@ public class MainActivity extends AppCompatActivity {
     RadioButton unk_id;
     Button save_id;
     Button reset_id;
+    Button delete_button;
+    private PokemonCursorAdapter cursorAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.linear);
+        setContentView(R.layout.constraint);
+
+        Cursor cursor = getContentResolver().query(PokeDB.CONTENT_URI, null, null, null, null);
 
         height_input = findViewById(R.id.height_input);
         name_input = findViewById(R.id.name_input);
@@ -78,6 +129,14 @@ public class MainActivity extends AppCompatActivity {
         unk_id = findViewById(R.id.unk_id);
         save_id = findViewById(R.id.save_id);
         reset_id = findViewById(R.id.reset_id);
+        delete_button = findViewById(R.id.delete_button);
+        cursorAdapter = new PokemonCursorAdapter(this, cursor);
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearEvent(v);
+            }
+        });
 
         reset_id.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -161,6 +161,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/defense_input" />
 
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="56dp"
+            android:onClick="deleteTransaction"
+            android:text="Delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/defense_id" />
+
         <RadioGroup
             android:id="@+id/radio_group_id"
             android:layout_width="208dp"

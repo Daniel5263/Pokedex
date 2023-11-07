@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nationalTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="National Number"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/speciesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Species"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Height"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Weight"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/levelTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/hpTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HP"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/attackTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Attack"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/defenseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Defense"
+        android:textSize="12sp" />
+</LinearLayout>
